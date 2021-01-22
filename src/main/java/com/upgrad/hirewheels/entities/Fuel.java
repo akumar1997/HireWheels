@@ -1,36 +1,38 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-public class fuel_type {
+@Entity
+public class Fuel {
     @Id
-    private int fuel_id;
+    private int fuelId;
 
-    
-    private String fuel_type;
 
-    public int getFuel_id() {
-        return fuel_id;
+    private String fuelType;
+
+    public int getFuelId() {
+        return fuelId;
     }
 
-    public void setFuel_id(int fuel_id) {
-        this.fuel_id = fuel_id;
+    public void setFuelId(int fuelId) {
+        this.fuelId = fuelId;
     }
 
-    public String getFuel_type() {
-        return fuel_type;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setFuel_type(String fuel_type) {
-        this.fuel_type = fuel_type;
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 
     @Override
     public String toString() {
-        return "fuel_type{" +
-                "fuel_id=" + fuel_id +
-                ", fuel_type='" + fuel_type + '\'' +
+        return "Fuel{" +
+                "fuelId=" + fuelId +
+                ", fuelType='" + fuelType + '\'' +
                 '}';
     }
 }
