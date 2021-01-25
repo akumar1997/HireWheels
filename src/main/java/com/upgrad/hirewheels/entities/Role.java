@@ -1,12 +1,11 @@
 package com.upgrad.hirewheels.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Role {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int roleId;
 
     @Column(nullable = false)

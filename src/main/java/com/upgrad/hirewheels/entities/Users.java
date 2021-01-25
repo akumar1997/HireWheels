@@ -17,10 +17,10 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String mobileNo;
 
     @Column(nullable = false)
@@ -95,7 +95,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "users{" +
+        return "user{" +
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

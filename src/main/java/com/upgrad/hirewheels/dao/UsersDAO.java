@@ -12,16 +12,16 @@ public interface UsersDAO extends JpaRepository<Users,Integer> {
     //First name
 
     Users findByFirstName(String firstName);
-
-    //First name or last name
-
+//
+//    //First name or last name
+//
     Users findByFirstNameOrLastName(String firstName,String lastName);
-
-    //Email
-
+//
+//    //Email
+//
     Users findByEmail(String email);
-
-    //Mobile Number
-
+//
+//    //Mobile Number
+//
     Users findByMobileNo(String mobileNo);
 }

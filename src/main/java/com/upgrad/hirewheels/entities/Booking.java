@@ -1,13 +1,12 @@
 package com.upgrad.hirewheels.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookingId;
 
 
