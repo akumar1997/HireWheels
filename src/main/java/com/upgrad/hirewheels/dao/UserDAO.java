@@ -3,7 +3,7 @@ package com.upgrad.hirewheels.dao;
 import com.upgrad.hirewheels.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsersDAO extends JpaRepository<Users,Integer> {
+public interface UserDAO extends JpaRepository<Users,Integer> {
     //TODO 3.2: Providing Custom Query Methods for the UserDao Interface
     //
 
@@ -15,7 +15,7 @@ public interface UsersDAO extends JpaRepository<Users,Integer> {
 //
 //    //First name or last name
 //
-    Users findByFirstNameOrLastName(String firstName,String lastName);
+    Users findByFirstNameOrLastName(String firstName, String lastName);
 //
 //    //Email
 //

@@ -1,6 +1,8 @@
 package com.upgrad.hirewheels;
 
-import com.upgrad.hirewheels.dao.UsersDAO;
+import com.upgrad.hirewheels.dao.RoleDAO;
+import com.upgrad.hirewheels.dao.UserDAO;
+import com.upgrad.hirewheels.entities.Role;
 import com.upgrad.hirewheels.entities.Users;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +17,18 @@ public class HireWheelsApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext context = SpringApplication.run(HireWheelsApplication.class, args);
-		UsersDAO usersDAO = (UsersDAO)context.getBean(UsersDAO.class);
+		UserDAO usersDAO = (UserDAO) context.getBean(UserDAO.class);
+		RoleDAO roleDAO = (RoleDAO) context.getBean(RoleDAO.class);
+
+		Role user = new Role();
+		user.setRoleId(1);
+		user.setRoleName("USER");
+		user = roleDAO.save(user);
+
+		Role admin = new Role();
+		admin.setRoleId(2);
+		admin.setRoleName("ADMIN");
+		admin = roleDAO.save(admin);
 
 		//TODO 3.3: Checking the UserDao Interface
 //
@@ -28,6 +41,10 @@ public class HireWheelsApplication {
 		user1.setPassword("78945");
 		user1.setMobileNo("9874563210");
 		user1.setWallet(1000);
+		user1.setRole(admin);
+
+		user1 = usersDAO.save(user1);
+
 
 		Users user2 = new Users();
 		user2.setFirstName("Kavi");
@@ -36,8 +53,11 @@ public class HireWheelsApplication {
 		user2.setPassword("789an45");
 		user2.setMobileNo("9874563740");
 		user2.setWallet(7000);
+		user2.setRole(user);
 
 
+
+//
 		Users user3 = new Users();
 		user3.setFirstName("Xavi");
 		user3.setLastName("Hernandez");
@@ -45,6 +65,7 @@ public class HireWheelsApplication {
 		user3.setPassword("xavi06");
 		user3.setMobileNo("7696986450");
 		user3.setWallet(2000);
+		user3.setRole(user);
 
 		Users user4 = new Users();
 		user4.setFirstName("Andres");
@@ -53,6 +74,7 @@ public class HireWheelsApplication {
 		user4.setPassword("iniesta08");
 		user4.setMobileNo("9977552410");
 		user4.setWallet(8000);
+		user4.setRole(user);
 
 		Users user5 = new Users();
 		user5.setFirstName("Lionel");
@@ -61,6 +83,7 @@ public class HireWheelsApplication {
 		user5.setPassword("dribble8945");
 		user5.setMobileNo("8874563210");
 		user5.setWallet(60000);
+		user5.setRole(user);
 
 		user1 = usersDAO.save(user1);
 		user2 = usersDAO.save(user2);
@@ -81,8 +104,6 @@ public class HireWheelsApplication {
 		usersDAO.findAll().forEach(System.out::println);
 
 
-
-
 //		Make a paginated request to fetch a page with two users using the UserDao interface and print the user details on the console.
 
 		System.out.println("*************Making Paginated request of 2 users *************");
@@ -96,6 +117,17 @@ public class HireWheelsApplication {
 		System.out.println(usersDAO.findByFirstNameOrLastName("Hari","Prasad"));
 		System.out.println(usersDAO.findByMobileNo("8874563210"));
 
-	}
+		System.out.println("*************Printing user details corresponding to user role *************");
+		roleDAO.findById(user.getRoleId())
+				.ifPresent(role-> role.getUsers().forEach(System.out::println));
 
+
+		System.out.println("*************Printing user details corresponding to admin role *************");
+		roleDAO.findById(admin.getRoleId()).ifPresent(role -> role.getUsers().forEach(System.out::println));
+
+
+
+//
+//}
+	}
 }

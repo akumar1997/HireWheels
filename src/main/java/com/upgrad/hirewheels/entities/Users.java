@@ -1,6 +1,7 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Users {
@@ -23,19 +24,17 @@ public class Users {
     @Column(nullable = false,unique = true)
     private String mobileNo;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
     @Column(nullable = false)
     private int wallet;
 
-//    @Column(nullable = false)
-//    private int roleId;
-//
-//    public int getRoleId() {
-//        return roleId;
-//    }
-//
-//    public void setRoleId(int roleId) {
-//        this.roleId = roleId;
-//    }
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
+    private Set<Booking> bookings;
+
 
     public int getUserId() {
         return userId;
@@ -85,6 +84,14 @@ public class Users {
         this.mobileNo = mobileNo;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public int getWallet() {
         return wallet;
     }
@@ -93,17 +100,25 @@ public class Users {
         this.wallet = wallet;
     }
 
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", mobileNo='" + mobileNo + '\'' +
+                ", role=" + role +
                 ", wallet=" + wallet +
-//                ", roleId=" + roleId +
                 '}';
     }
 }

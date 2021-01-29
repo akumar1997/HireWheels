@@ -9,102 +9,106 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookingId;
 
-
+    @Column(nullable=false)
     private LocalDate pickupDate;
 
-
+    @Column(nullable=false)
     private LocalDate dropoffDate;
 
-
+    @Column(nullable=false)
     private LocalDate bookingDate;
 
+    @Column(nullable=false)
+    private int amount;
 
-    private int bookingAmount;
+    @ManyToOne
+    @JoinColumn(name = "location_id", nullable=false)
+    private Location location;
 
-//    @Column(nullable=false)
-//    private int location_id;
-//
-//    @Column(nullable=false)
-//    private int vehicle_id;
-//
-//    @Column(nullable=false)
-//    private int user_id;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id", nullable=false)
+    private Vehicle vehicle;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable=false)
+    private Users user;
 
     public int getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(int booking_id) {
-        this.bookingId = booking_id;
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
     public LocalDate getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(LocalDate pickup_date) {
-        this.pickupDate = pickup_date;
+    public void setPickupDate(LocalDate pickupDate) {
+        this.pickupDate = pickupDate;
     }
 
     public LocalDate getDropoffDate() {
         return dropoffDate;
     }
 
-    public void setDropoffDate(LocalDate dropoff_date) {
-        this.dropoffDate = dropoff_date;
+    public void setDropoffDate(LocalDate dropoffDate) {
+        this.dropoffDate = dropoffDate;
     }
 
     public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDate booking_date) {
-        this.bookingDate = booking_date;
+    public void setBookingDate(LocalDate bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
-    public int getBookingAmount() {
-        return bookingAmount;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setBookingAmount(int booking_amount) {
-        this.bookingAmount = booking_amount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
-//    public int getLocation_id() {
-//        return location_id;
-//    }
-//
-//    public void setLocation_id(int location_id) {
-//        this.location_id = location_id;
-//    }
-//
-//    public int getVehicle_id() {
-//        return vehicle_id;
-//    }
-//
-//    public void setVehicle_id(int vehicle_id) {
-//        this.vehicle_id = vehicle_id;
-//    }
-//
-//    public int getUser_id() {
-//        return user_id;
-//    }
-//
-//    public void setUser_id(int user_id) {
-//        this.user_id = user_id;
-//    }
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
 
     @Override
     public String toString() {
-        return "booking{" +
-                "booking_id=" + bookingId +
-                ", pickup_date=" + pickupDate +
-                ", dropoff_date=" + dropoffDate +
-                ", booking_date=" + bookingDate +
-                ", booking_amount=" + bookingAmount +
-//                ", location_id=" + location_id +
-//                ", vehicle_id=" + vehicle_id +
-//                ", user_id=" + user_id +
+        return "Booking{" +
+                "bookingId=" + bookingId +
+                ", pickupDate=" + pickupDate +
+                ", dropoffDate=" + dropoffDate +
+                ", bookingDate=" + bookingDate +
+                ", amount=" + amount +
+                ", location=" + location +
+                ", vehicle=" + vehicle +
+                ", user=" + user +
                 '}';
     }
 }

@@ -1,40 +1,50 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "location_id")
-    private int id;
+    private int locationId;
 
-    @Column(name = "vehicle_location",nullable=false)
-    private String location;
+    @Column(nullable=false)
+    private String locationName;
 
     @Column(name = "vehicle_address",nullable=false)
     private String address;
 
-    //    @Column(nullable=false)
-//    private int city_id;
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 
     @Column(nullable=false)
     private int pincode;
 
-    public int getId() {
-        return id;
+    @OneToMany(mappedBy = "location",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
+    private Set<Booking> bookings;
+
+
+    @OneToMany(mappedBy = "location",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
+    private Set<Vehicle> vehicles;
+
+
+    public int getLocationId() {
+        return locationId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocationName() {
+        return locationName;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 
     public String getAddress() {
@@ -45,6 +55,14 @@ public class Location {
         this.address = address;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     public int getPincode() {
         return pincode;
     }
@@ -53,12 +71,29 @@ public class Location {
         this.pincode = pincode;
     }
 
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
     @Override
     public String toString() {
         return "Location{" +
-                "id=" + id +
-                ", location='" + location + '\'' +
+                "locationId=" + locationId +
+                ", locationName='" + locationName + '\'' +
                 ", address='" + address + '\'' +
+                ", city=" + city +
                 ", pincode=" + pincode +
                 '}';
     }
