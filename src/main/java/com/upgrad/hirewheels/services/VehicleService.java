@@ -9,4 +9,5 @@ public interface VehicleService {
     public List<Vehicle> getAllVehicles();
     public Vehicle addVehicle(Vehicle vehicle);
     public Vehicle getVehicleDetails(int id) throws VehicleDetailsNotFoundException;
+
 }
