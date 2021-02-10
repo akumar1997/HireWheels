@@ -18,8 +18,8 @@ public class HireWheelsApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext context = SpringApplication.run(HireWheelsApplication.class, args);
-		initService initService= context.getBean(initService.class);
-		initService.start();
+//		initService initService= context.getBean(initService.class);
+//		initService.start();
 
 
 //		UserDAO usersDAO = (UserDAO) context.getBean(UserDAO.class);

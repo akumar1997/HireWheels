@@ -1,32 +1,23 @@
 package com.upgrad.hirewheels.dto;
 
-import com.upgrad.hirewheels.entities.Location;
-import com.upgrad.hirewheels.entities.User;
-import com.upgrad.hirewheels.entities.Vehicle;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import java.time.LocalDate;
-
 public class BookingDto {
     private int bookingId;
 
-    private LocalDate pickupDate;
+    private String pickupDate;
 
-    private LocalDate dropoffDate;
+    private String dropoffDate;
 
-    private LocalDate bookingDate;
+    private String bookingDate;
 
-    private float amount;
-
-
-    private Location location;
+    private int amount;
 
 
-    private int vehicle;
+    private int locationId;
 
-    private int user;
+
+    private int vehicleId;
+
+    private int userId;
 
     public int getBookingId() {
         return bookingId;
@@ -36,59 +27,59 @@ public class BookingDto {
         this.bookingId = bookingId;
     }
 
-    public LocalDate getPickupDate() {
+    public String getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(LocalDate pickupDate) {
+    public void setPickupDate(String pickupDate) {
         this.pickupDate = pickupDate;
     }
 
-    public LocalDate getDropoffDate() {
+    public String getDropoffDate() {
         return dropoffDate;
     }
 
-    public void setDropoffDate(LocalDate dropoffDate) {
+    public void setDropoffDate(String dropoffDate) {
         this.dropoffDate = dropoffDate;
     }
 
-    public LocalDate getBookingDate() {
+    public String getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDate bookingDate) {
+    public void setBookingDate(String bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public float getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    public Location getLocation() {
-        return location;
+    public int getLocation() {
+        return locationId;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(int location) {
+        this.locationId = location;
     }
 
     public int getVehicle() {
-        return vehicle;
+        return vehicleId;
     }
 
     public void setVehicle(int vehicle) {
-        this.vehicle = vehicle;
+        this.vehicleId = vehicle;
     }
 
     public int getUser() {
-        return user;
+        return this.userId;
     }
 
     public void setUser(int user) {
-        this.user = user;
+        this.userId = user;
     }
 }

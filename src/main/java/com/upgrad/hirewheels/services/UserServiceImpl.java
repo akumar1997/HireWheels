@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) throws UserAlreadyExistsException {
+        System.out.println(user);
         if (userDAO.findByEmail(user.getEmail()) != null) {
             throw new UserAlreadyExistsException("Email already exists");
         }
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
         if (userDAO.findByMobileNo(user.getMobileNo()) != null) {
             throw new UserAlreadyExistsException("Mobile Number Already Exists");
         }
-
+        System.out.println(user);
         return userDAO.save(user);
     }
 
