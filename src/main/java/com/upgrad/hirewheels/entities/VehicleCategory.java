@@ -6,15 +6,22 @@ import java.util.Set;
 @Entity
 public class VehicleCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "vehicle_category_id")
     private int vehicleCategoryId;
 
-    @Column(name = "vehicle_category_name", nullable = false)
+    @Column(length = 50,name = "vehicle_category_name", nullable = false)
     private String vehicleCategoryName;
 
     @OneToMany(mappedBy = "vehicleCategory",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
-    private Set<VehicleSubcategory> vehicleSubcategories;
+    private Set<VehicleSubCategory> vehicleSubCategories;
+
+    public VehicleCategory(){}
+
+    public VehicleCategory(int vehicleCategoryId, String vehicleCategoryName) {
+        this.vehicleCategoryId = vehicleCategoryId;
+        this.vehicleCategoryName = vehicleCategoryName;
+    }
 
 
     public int getVehicleCategoryId() {
@@ -33,12 +40,12 @@ public class VehicleCategory {
         this.vehicleCategoryName = vehicleCategoryName;
     }
 
-    public Set<VehicleSubcategory> getVehicleSubcategories() {
-        return vehicleSubcategories;
+    public Set<VehicleSubCategory> getVehicleSubCategories() {
+        return vehicleSubCategories;
     }
 
-    public void setVehicleSubcategories(Set<VehicleSubcategory> vehicleSubcategories) {
-        this.vehicleSubcategories = vehicleSubcategories;
+    public void setVehicleSubCategories(Set<VehicleSubCategory> vehicleSubCategories) {
+        this.vehicleSubCategories = vehicleSubCategories;
     }
 
 

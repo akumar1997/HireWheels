@@ -1,19 +1,20 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
-public class VehicleSubcategory {
+public class VehicleSubCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int vehicle_subcategory_id;
 
-    @Column(nullable = false)
+    @Column(length = 50,nullable = false,unique = true)
     private String vehicle_subcategory_name;
 
-    @Column(nullable = false)
-    private int price_per_day;
+    @Column(length = 10,nullable = false)
+    private int cost_per_hour;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_category_id", nullable = false)
@@ -21,6 +22,16 @@ public class VehicleSubcategory {
 
     @OneToMany(mappedBy = "vehicle_subcategory",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Vehicle> vehicles;
+
+    public VehicleSubCategory(){}
+
+    public VehicleSubCategory(int vehicle_subcategory_id, String vehicle_subcategory_name,
+                              int cost_per_hour,VehicleCategory vehicleCategory) {
+        this.vehicle_subcategory_id = vehicle_subcategory_id;
+        this.vehicle_subcategory_name = vehicle_subcategory_name;
+        this.cost_per_hour=cost_per_hour;
+        this.vehicleCategory =  vehicleCategory;
+    }
 
 
     public int getVehicle_subcategory_id() {
@@ -39,12 +50,12 @@ public class VehicleSubcategory {
         this.vehicle_subcategory_name = vehicle_subcategory_name;
     }
 
-    public int getPrice_per_day() {
-        return price_per_day;
+    public int getCost_per_hour() {
+        return cost_per_hour;
     }
 
-    public void setPrice_per_day(int price_per_day) {
-        this.price_per_day = price_per_day;
+    public void setCost_per_hour(int cost_per_hour) {
+        this.cost_per_hour = cost_per_hour;
     }
 
     public VehicleCategory getVehicleCategory() {
@@ -52,7 +63,7 @@ public class VehicleSubcategory {
     }
 
     public void setVehicleCategory(VehicleCategory vehicleCategory) {
-        this.vehicleCategory = vehicleCategory;
+        this.vehicleCategory = (vehicleCategory);
     }
 
     public Set<Vehicle> getVehicles() {
@@ -70,7 +81,7 @@ public class VehicleSubcategory {
         return "VehicleSubcategory{" +
                 "vehicle_subcategory_id=" + vehicle_subcategory_id +
                 ", vehicle_subcategory_name='" + vehicle_subcategory_name + '\'' +
-                ", price_per_day=" + price_per_day +
+                ", cost_per_hour=" + cost_per_hour +
                 ", vehicleCategory=" + vehicleCategory +
                 '}';
     }

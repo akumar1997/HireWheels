@@ -6,14 +6,21 @@ import java.util.Set;
 @Entity
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int roleId;
 
-    @Column(nullable = false,unique = true)
+    @Column(length = 50,nullable = false,unique = true)
     private String roleName;
 
     @OneToMany(mappedBy = "role" , fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
-    private Set<Users> users;
+    private Set<User> users;
+
+    public Role(){}
+
+    public Role(int roleId, String roleName) {
+        this.roleId=roleId;
+        this.roleName=roleName;
+    }
 
     public int getRoleId() {
         return roleId;
@@ -31,11 +38,11 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Set<Users> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 

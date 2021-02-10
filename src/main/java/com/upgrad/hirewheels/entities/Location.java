@@ -6,21 +6,21 @@ import java.util.Set;
 @Entity
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "location_id")
     private int locationId;
 
-    @Column(nullable=false)
+    @Column(length = 50,nullable=false)
     private String locationName;
 
-    @Column(name = "vehicle_address",nullable=false)
+    @Column(length = 100,name = "vehicle_address",nullable=false)
     private String address;
 
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @Column(nullable=false)
+    @Column(length = 6,nullable=false)
     private int pincode;
 
     @OneToMany(mappedBy = "location",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
@@ -29,6 +29,16 @@ public class Location {
 
     @OneToMany(mappedBy = "location",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Vehicle> vehicles;
+
+    public Location(int locationId, String locationName, String address, int pincode, City city) {
+        this.locationId = locationId;
+        this.locationName=locationName;
+        this.address = address;
+        this.pincode=pincode;
+        this.city = city;
+    }
+
+    public Location(){}
 
 
     public int getLocationId() {

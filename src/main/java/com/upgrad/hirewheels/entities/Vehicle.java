@@ -6,21 +6,20 @@ import java.util.Set;
 @Entity
 public class Vehicle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int vehicle_id;
 
-    @Column(nullable = false)
+    @Column(length=50,nullable = false)
     private String vehicle_model;
 
-    @Column(nullable = false, unique = true
-    )
+    @Column(length = 10,nullable = false, unique = true)
     private int vehicle_number;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_subcategory_id" , nullable = false)
-    private VehicleSubcategory vehicle_subcategory;
+    private VehicleSubCategory vehicle_subcategory;
 
-    @Column(nullable = false)
+    @Column(length = 50,nullable = false)
     private String vehicle_color;
 
     @ManyToOne
@@ -34,16 +33,23 @@ public class Vehicle {
     @Column(nullable = false)
     private boolean availabilityStatus;
 
-    @Column(nullable = false)
+    @Column(length = 500,nullable = false)
     private String image;
 
 
     @OneToMany(mappedBy = "vehicle",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Booking> bookings;
 
+
+
+    public Vehicle(){}
+
     public int getVehicle_id() {
         return vehicle_id;
     }
+
+
+
 
     public void setVehicle_id(int vehicle_id) {
         this.vehicle_id = vehicle_id;
@@ -65,11 +71,11 @@ public class Vehicle {
         this.vehicle_number = vehicle_number;
     }
 
-    public VehicleSubcategory getVehicle_subcategory() {
+    public VehicleSubCategory getVehicle_subcategory() {
         return vehicle_subcategory;
     }
 
-    public void setVehicle_subcategory(VehicleSubcategory vehicle_subcategory) {
+    public void setVehicle_subcategory(VehicleSubCategory vehicle_subcategory) {
         this.vehicle_subcategory = vehicle_subcategory;
     }
 
@@ -127,5 +133,7 @@ public class Vehicle {
                 ", image='" + image + '\'' +
                 '}';
     }
+
+
 }
 

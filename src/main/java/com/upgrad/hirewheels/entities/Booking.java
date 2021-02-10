@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookingId;
 
     @Column(nullable=false)
@@ -18,7 +18,7 @@ public class Booking {
     @Column(nullable=false)
     private LocalDate bookingDate;
 
-    @Column(nullable=false)
+    @Column(length = 10,nullable=false)
     private int amount;
 
     @ManyToOne
@@ -32,7 +32,9 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable=false)
-    private Users user;
+    private User user;
+
+    public Booking(){}
 
     public int getBookingId() {
         return bookingId;
@@ -90,11 +92,11 @@ public class Booking {
         this.vehicle = vehicle;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

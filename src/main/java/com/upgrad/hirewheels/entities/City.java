@@ -6,14 +6,21 @@ import java.util.Set;
 @Entity
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int cityId;
 
-    @Column(nullable = false)
+    @Column(length = 50,nullable = false)
     private String cityName;
 
     @OneToMany(mappedBy = "city",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Location> locations;
+
+    public City(){}
+
+    public City(int cityId, String cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
 
     public int getCityId() {
         return cityId;

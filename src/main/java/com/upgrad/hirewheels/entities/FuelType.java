@@ -6,15 +6,21 @@ import java.util.Set;
 @Entity
 public class FuelType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int fuelTypeId;
 
-    @Column(nullable = false, unique = true)
+    @Column(length = 50,nullable = false, unique = true)
     private String fuelType;
 
     @OneToMany(mappedBy = "fuelType",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Vehicle> vehicles;
 
+    public FuelType(){}
+
+    public FuelType(int fuelTypeId, String fuelType) {
+        this.fuelTypeId = fuelTypeId;
+        this.fuelType = fuelType;
+    }
 
 
     public int getFuelTypeId() {

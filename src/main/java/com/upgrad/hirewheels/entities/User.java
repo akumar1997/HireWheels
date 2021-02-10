@@ -4,36 +4,49 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Users {
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @Column(nullable = false)
+    @Column(length=50,nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(length=50)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(length = 50,nullable = false)
     private String password;
 
-    @Column(nullable = false,unique = true)
+    @Column(length = 50,nullable = false,unique = true)
     private String email;
 
-    @Column(nullable = false,unique = true)
+    @Column(length = 10,nullable = false,unique = true)
     private String mobileNo;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @Column(nullable = false)
+    @Column(length = 10,nullable = false)
     private int wallet;
 
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Booking> bookings;
+
+    public User(){}
+
+    public User(int userId,String firstName, String lastName, String password, String email, String mobileNo, int wallet, Object role) {
+        this.userId = userId;
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.mobileNo = mobileNo;
+        this.wallet = wallet;
+        this.role = (Role)role;
+    }
 
 
     public int getUserId() {

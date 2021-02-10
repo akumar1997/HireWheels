@@ -1,27 +1,21 @@
 package com.upgrad.hirewheels.dao;
 
-import com.upgrad.hirewheels.entities.Users;
+import com.upgrad.hirewheels.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserDAO extends JpaRepository<Users,Integer> {
+import java.util.List;
+import java.util.Optional;
+
+public interface UserDAO extends JpaRepository<User,Integer> {
     //TODO 3.2: Providing Custom Query Methods for the UserDao Interface
     //
 
-    //Write custom query methods inside the UserDao interface to find a user by his:
+    public List<User> findByFirstName(String firstName);
 
-    //First name
+    public List<User> findByFirstNameOrLastName(String firstName, String lastName);
 
-    Users findByFirstName(String firstName);
-//
-//    //First name or last name
-//
-    Users findByFirstNameOrLastName(String firstName, String lastName);
-//
-//    //Email
-//
-    Users findByEmail(String email);
-//
-//    //Mobile Number
-//
-    Users findByMobileNo(String mobileNo);
+    public User findByMobileNo(String mobileNumber);
+
+    public User findByEmail(String emailId);
+
 }
