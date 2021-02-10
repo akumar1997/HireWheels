@@ -13,7 +13,7 @@ public class Vehicle {
     private String vehicle_model;
 
     @Column(length = 10,nullable = false, unique = true)
-    private int vehicle_number;
+    private String vehicle_number;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_subcategory_id" , nullable = false)
@@ -44,6 +44,23 @@ public class Vehicle {
 
     public Vehicle(){}
 
+
+    public Vehicle(int vehicleId, String vehicleModel, String vehicleNumber, String color,
+                   boolean availabilityStatus, String vehicleImageUrl, FuelType fuelType,
+                   Location location, VehicleSubCategory vehicleSubcategory) {
+        this.vehicle_id = vehicleId;
+        this.vehicle_model = vehicleModel;
+        this.vehicle_number = vehicleNumber;
+        this.vehicle_color = color;
+        this.availabilityStatus = availabilityStatus;
+        this.image = vehicleImageUrl;
+        this.fuelType = fuelType;
+        this.location = location;
+        this.vehicle_subcategory = vehicleSubcategory;
+
+    }
+
+
     public int getVehicle_id() {
         return vehicle_id;
     }
@@ -63,11 +80,11 @@ public class Vehicle {
         this.vehicle_model = vehicle_model;
     }
 
-    public int getVehicle_number() {
+    public String getVehicle_number() {
         return vehicle_number;
     }
 
-    public void setVehicle_number(int vehicle_number) {
+    public void setVehicle_number(String vehicle_number) {
         this.vehicle_number = vehicle_number;
     }
 
